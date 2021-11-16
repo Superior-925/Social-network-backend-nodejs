@@ -20,7 +20,7 @@ module.exports = {
   production: {
     username: DB_USERNAME,
     password: DB_PASSWORD,
-    database: 'facebook-prod',
+    database: 'da8glcm2hc2jfb',
     host: DB_HOST,
     dialect: 'postgres',
   },
