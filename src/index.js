@@ -31,6 +31,10 @@ const io = new Server(httpServer, {
   }
 });
 
+const wrapMiddlewareForSocketIo = (middleware) => (socket, next) => middleware(socket.request, {}, next);
+io.use(wrapMiddlewareForSocketIo(passport.initialize()));
+io.use(wrapMiddlewareForSocketIo(passport.authenticate('jwt', { session: false })));
+
 const socketsArray = [];
 
 io.on('connection', (socket) => {
@@ -73,10 +77,10 @@ io.on('connection', (socket) => {
               if (+friend.dataValues.friendId === +userSocket.userId) {
                 socket.to(userSocket.userSocket).emit('comment', foundComment);
               }
-            }).catch((err) => console.log(err));
+            });
           });
         }).catch((err) => console.log(err));
-      });
+      }).catch((err) => console.log(err));
     }).catch((err) => console.log(err));
   });
   socket.on('comment-change', (comment) => {

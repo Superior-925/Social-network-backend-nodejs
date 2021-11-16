@@ -1,4 +1,4 @@
-# Trello-clone application server side(PostgreSQL)
+# Social network application server side(PostgreSQL)
 
 ## Application Technology Stack
 
@@ -26,13 +26,13 @@ $ node -v
  - Clone the repository
 
   ```sh
-$ git clone https://github.com/Superior-925/Trello-backend.git
+$ git clone https://github.com/Superior-925/Social-network-backend-nodejs.git
  ```
 
 - Go to project folder
 
 ```sh
-$ cd Trello-backend
+$ cd Social-network-backend-nodejs
  ```
 
 - Create .env and set the following params:
@@ -95,5 +95,4 @@ $ npm run db:migrate-test
 $ npm run test
  ```
 
-If you have questions - contact me on email skykeeper925@gmail.com
-Best regards Anton Logunov.
+If you have questions - contact me on email skykeeper925@gmail.com. Best regards Anton Logunov.

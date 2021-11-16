@@ -14,8 +14,8 @@ router.post('/post', passport.authenticate('jwt', { session: false }),
       } = req.body;
       User.findByPk(userId).then((user) => {
         if (!user) return res.status(404).json({ message: 'User not found!' });
-        user.createPost({ postText }).then((task) => {
-          res.status(200).send(task);
+        user.createPost({ postText }).then((post) => {
+          res.status(200).send(post);
         }).catch((err) => console.log(err));
         return null;
       }).catch((err) => console.log(err));

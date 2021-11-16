@@ -1,25 +1,23 @@
-// const express = require('express');
-// const Board = require('../src/models/board');
-//
-// const router = express.Router();
-//
-// router.post('/test',
-//   async (req, res) => {
-//     const board = new Board({
-//       boardName: req.body.boardName,
-//     });
-//     try {
-//       await board.save();
-//       res.send(board);
-//     } catch (e) {
-//       res.status(422).send({ message: 'Board cannot be created!' });
-//     }
-//   });
-//
-// router.get('/test',
-//   async (req, res) => {
-//     const boards = await Board.findAll();
-//     res.send(boards);
-//   });
-//
-// module.exports = router;
+const express = require('express');
+const User = require('../src/models/user');
+
+const router = express.Router();
+
+router.post('/test/post', (req, res) => {
+  try {
+    const {
+      postText, userId
+    } = req.body;
+    User.findByPk(userId).then((user) => {
+      if (!user) return res.status(404).json({ message: 'User not found!' });
+      user.createPost({ postText }).then((post) => {
+        res.status(200).send(post);
+      }).catch((err) => console.log(err));
+      return null;
+    }).catch((err) => console.log(err));
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+});
+
+module.exports = router;
