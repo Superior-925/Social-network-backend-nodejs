@@ -39,7 +39,9 @@
     "pg": "^8.7.1",
     "sequelize": "^6.6.5",
     "socket.io": "^4.3.1",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "nodemon": "^2.0.10",
+    "sequelize-cli": "^6.2.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
