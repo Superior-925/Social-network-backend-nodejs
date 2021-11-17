@@ -26,7 +26,7 @@ require('./database/index');
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: 'http://localhost:4200',
+    origin: 'https://social-network-logunov.herokuapp.com/',
     methods: ['GET', 'POST']
   }
 });
@@ -105,6 +105,7 @@ app.use(passport.initialize());
 app.use(morgan('dev'));
 app.use(helmet());
 app.use(cors());
+app.options('*', cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
