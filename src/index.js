@@ -26,7 +26,7 @@ require('./database/index');
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: 'https://social-network-logunov.herokuapp.com/',
+    origin: 'https://social-network-logunov.herokuapp.com',
     methods: ['GET', 'POST']
   }
 });
@@ -100,21 +100,17 @@ io.on('connection', (socket) => {
   });
 });
 
+const corsOptions = {
+  origin: 'https://social-network-logunov.herokuapp.com'
+};
+
 app.use(passport.initialize());
 
 app.use(morgan('dev'));
 app.use(helmet());
-app.use(cors());
-app.options('*', cors());
+app.use(cors(corsOptions));
+//app.options('*', cors());
 app.use(express.json());
-
-app.use(function(req, res, next) {
-  res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type, Accept,Authorization,Origin");
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  next();
-});
 
 app.get('/', (req, res) => {
   res.json({
