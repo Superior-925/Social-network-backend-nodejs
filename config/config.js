@@ -6,7 +6,7 @@ module.exports = {
   development: {
     username: DB_USERNAME,
     password: DB_PASSWORD,
-    database: 'facebook-dev',
+    database: 'da8glcm2hc2jfb',
     host: DB_HOST,
     dialect: 'postgres',
   },
