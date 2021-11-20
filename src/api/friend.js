@@ -11,10 +11,13 @@ const router = express.Router();
 router.get('/friends/search/', passport.authenticate('jwt', { session: false }),
   (req, res) => {
     try {
-      const name = req.query.param;
+      const { name } = req.query;
+      const { ids } = req.query;
       User.findAll({
         where: {
           nickname: { [Op.like]: `%${name}%` },
+          [Op.not]: [
+            { id: ids }]
         }
       }).then((users) => {
         if (!users) return res.status(404).json({ message: 'Board not found!' });
